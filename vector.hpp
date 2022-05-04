@@ -1,10 +1,5 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
-
-// #include <cstring>
-#include <memory> // allocator class 사용, 메모리관리, allocator가 메모리 관리 
-// #include <cstddef> // C헤더파일 <stddef.h>와 <stdlib.h>의 새로운 버전으로, 공통상수, 매크로, 타입, 함수들을 정의하고 있다.
-// #include "ReverseIterator.hpp"
 #include "utils.hpp"
 
 namespace ft
@@ -194,13 +189,13 @@ namespace ft
             typedef typename allocator_type::size_type size_type;
             typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
         public :
-            explicit vector (const allocator_type& alloc = allocator_type()) : _alloc(alloc),_start(nullptr), _size(0), _capacity(0)
+            explicit vector (const allocator_type& alloc = allocator_type()) : _alloc(alloc),_start(NULL), _size(0), _capacity(0)
             {}
-            vector(const vector& x) : _start(nullptr), _size(0), _capacity(0)
+            vector(const vector& x) : _start(NULL), _size(0), _capacity(0)
             {
                 *this = x;
             }
-            explicit vector(size_type n, const value_type& value = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc),_start(nullptr), _size(0), _capacity(0)
+            explicit vector(size_type n, const value_type& value = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc),_start(NULL), _size(0), _capacity(0)
             {
                 _start = _alloc.allocate(n);
                 _size = n;
@@ -213,7 +208,7 @@ namespace ft
                 }    
             }
             template<class InputIterator>
-            vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename enable_if<!is_integral<InputIterator>::value, InputIterator >::type* = 0) :_alloc(alloc), _start(nullptr), _size(0), _capacity(0)
+            vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename enable_if<!is_integral<InputIterator>::value, InputIterator >::type* = 0) :_alloc(alloc), _start(NULL), _size(0), _capacity(0)
             {
                 pointer tmp;
                 difference_type n = ft::distance(first, last);
@@ -230,12 +225,10 @@ namespace ft
             ~vector()
             {
                 this->clear();
-                _alloc.deallocate(_start, _capacity);
             }
             vector& operator=(const vector& x)
             {
                 this->clear();
-                _alloc.deallocate(_start, _capacity);
                 if (_capacity < x.capacity())
                 {
                     _start = _alloc.allocate(x._size);

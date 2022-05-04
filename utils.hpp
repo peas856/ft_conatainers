@@ -1,9 +1,6 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <iostream>
-// #include <functional>
-
 namespace ft 
 {
   template <typename T> struct is_integral{static const bool value = false;};

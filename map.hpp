@@ -1,8 +1,5 @@
 #ifndef MAP_HPP
 #define MAP_HPP
-// #include <exception>
-// #include <cstring>
-#include <memory>
 #include "vector.hpp"
 #include "utils.hpp"
 
@@ -229,7 +226,7 @@ namespace ft
             }
             void deleteTree(ft::NODE<T> * node)
             {
-                if (node == NULL)
+                if (node == nullptr)
                     return ;
                 deleteTree(node->left);
                 deleteTree(node->right);
@@ -239,15 +236,15 @@ namespace ft
             void deleteNode(ft::NODE<T> * node)
             {
                 // if (node->parent->left == node)
-                //     node->parent->left = NULL;
+                //     node->parent->left = nullptr;
                 // else if (node->parent->right == node)
-                //     node->parent->right = NULL;
+                //     node->parent->right = nullptr;
                 p_alloc.destroy(node->data);
                 p_alloc.deallocate(node->data, 1);
-                node->data = NULL;
+                node->data = nullptr;
                 n_alloc.destroy(node);
                 n_alloc.deallocate(node, 1);
-                node = NULL;
+                node = nullptr;
                 _size--;
                 return ;
             }
@@ -258,7 +255,7 @@ namespace ft
             }
             iterator end() 
             {
-                return (iterator(NULL, this)); 
+                return (iterator(nullptr, this)); 
             }
             const_iterator begin() const 
             { 
@@ -267,7 +264,7 @@ namespace ft
             }
             const_iterator end() const 
             { 
-                return (iterator(NULL, this)); 
+                return (iterator(nullptr, this)); 
             }
 
             reverse_iterator rbegin() { return reverse_iterator(end()); }
@@ -398,7 +395,7 @@ namespace ft
             }
             ft::NODE<T>* insert(ft::NODE<T>* node, T val) 
             {
-                if (node == NULL)
+                if (node == nullptr)
                 {
                     ft::NODE<T>* tmp = n_alloc.allocate(1);
                     n_alloc.construct(tmp);
@@ -496,7 +493,7 @@ namespace ft
             {
                 if (!(past->parent))
                 {
-                    cur->parent = NULL;
+                    cur->parent = nullptr;
                     if (past->left)
                         past->left->parent = past;
                     if (past->right)
